@@ -46,7 +46,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void goHome() {
-    click(By.linkText("home"));
+    click(By.xpath("//*[@id='nav']/ul/li[1]/a"));
   }
 
   public void selectContactById(int id) {
