@@ -4,6 +4,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import qa.tests.model.ContactData;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -20,22 +22,29 @@ public class ContactLookInfoTest extends TestBase {
     app.contact().goHome();
     if (app.contact().all().size() == 0) {
       app.goTo().submitclick();
-      app.contact().create(new ContactData()
+      ContactData contact = new ContactData()
               .withFirstname("Work").withLastname("Practika").withMiddlename("Task7").withNickname("test7")
               .withAddress("Saint Petersburg").withEmail("gfbgknfjnb").withEmail2("https://dfkdlfj")
               .withEmail3("www@gmai.ovo").withHomePhone("0110101").withMobilePhone("+79548525646")
-              .withWorkPhone("5663565").withCompany("wer").withGroup("Test2"), true);
+              .withWorkPhone("5663565").withCompany("wer").withGroup("Test2");
+      app.contact().create(contact , true);
+      app.contact().goHome();
     }
   }
 
   @Test
 
   public void testContactLookInfo() {
-    app.contact().goHome();
-    app.contact().lookInfoContact();
-    ContactData contact = app.contact().all1().iterator().next();
-    ContactData contactLookInfo = app.contact().infoEditForm(contact);
-    assertThat(contact.getAllData(), equalTo(mergeDataContact(contactLookInfo)));
+    ContactData contact = app.contact().all().iterator().next();
+    ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
+    assertThat(contact.getAllData(), equalTo(mergePhones(contactInfoFromEditForm)));
+  }
+
+  private String mergePhones(ContactData contact) {
+    return Arrays.asList(contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone())
+            .stream().filter((s -> ! s.equals("")))
+            .map(ContactLookInfoTest::cleaned)
+            .collect(Collectors.joining("\n"));
   }
 
   private String mergeDataContact(ContactData contact) {

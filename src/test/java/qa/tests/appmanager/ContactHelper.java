@@ -57,8 +57,8 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//input[@value='Delete']"));
   }
 
-  public void modifyContactInfo() {
-    click(By.xpath("//input[@value='Modify']"));
+  public void modifyContactInfo(int id) {
+    wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
   }
 
   public void editContactById(int id) {
@@ -165,7 +165,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public ContactData infoEditForm(ContactData contact) {
-    modifyContactInfo();
+    modifyContactInfo(contact.getId());
     String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
     String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
     String home = wd.findElement(By.name("home")).getAttribute("value");
