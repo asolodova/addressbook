@@ -65,8 +65,8 @@ public class ContactHelper extends HelperBase {
     wd.findElement(By.xpath("//a[@href='edit.php?id="+id+"']")).click();
   }
 
-  public void lookInfoContact(int id){
-    wd.findElement(By.xpath("//a[@href='view.php?id="+id+"']")).click();
+  public void lookInfoContact(){
+    wd.findElement(By.xpath("//*[@title='Details']")).click();
   }
 
   public void updateContact() {

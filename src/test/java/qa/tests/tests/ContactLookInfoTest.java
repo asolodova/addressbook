@@ -32,16 +32,10 @@ public class ContactLookInfoTest extends TestBase {
 
   public void testContactLookInfo() {
     app.contact().goHome();
-    app.contact().lookInfoContact(0);
+    app.contact().lookInfoContact();
     ContactData contact = app.contact().all1().iterator().next();
     ContactData contactLookInfo = app.contact().infoEditForm(contact);
-
-   // ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact) ;
-
     assertThat(contact.getAllData(), equalTo(mergeDataContact(contactLookInfo)));
-
-
-
   }
 
   private String mergeDataContact(ContactData contact) {
@@ -49,7 +43,6 @@ public class ContactLookInfoTest extends TestBase {
             ,contact.getAllEmails(), contact.getAllPhones()).filter((s) -> !s.equals(""))
             .map(ContactLookInfoTest::cleaned)
             .collect(Collectors.joining("\n"));
-
   }
 
   public static String cleaned(String data) {
