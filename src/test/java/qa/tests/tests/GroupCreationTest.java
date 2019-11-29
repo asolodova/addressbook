@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import qa.tests.model.GroupData;
 import qa.tests.model.Groups;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -16,11 +17,15 @@ public class GroupCreationTest extends TestBase {
 
 
   @DataProvider
-  public Iterator <Object[]> validGroups(){
+  public Iterator <Object[]> validGroups() throws IOException {
     List<Object[]> list = new ArrayList<Object[]>();
-    list.add(new Object[]{new GroupData().withName("test1").withHeader("header 01").withFooter("footer 01")});
-    list.add(new Object[]{new GroupData().withName("test2").withHeader("header 02").withFooter("footer 02")});
-    list.add(new Object[]{new GroupData().withName("test3").withHeader("header 03").withFooter("footer 03")});
+    BufferedReader reader = new BufferedReader(new FileReader(new File("src/main/resources/groups.csv")));
+    String line = reader.readLine();
+    while (line != null){
+      String[] split =  line.split(";");
+      list.add(new Object[] {new GroupData().withName(split[0]).withHeader(split[1]).withFooter(split[2])});
+      line = reader.readLine();
+    }
     return list.iterator();
   }
   @Test(dataProvider = "validGroups")
