@@ -16,7 +16,7 @@ public class ContactDeleteTest extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions(){
-    app.contact().lookContact();
+    app.contact().goHome();
     if (app.contact().all().size() == 0) {
       app.goTo().submitclick();
       app.contact().create(new ContactData()

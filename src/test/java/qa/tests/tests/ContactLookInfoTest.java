@@ -17,7 +17,7 @@ public class ContactLookInfoTest extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions(){
-    app.contact().lookContact();
+    app.contact().goHome();
     if (app.contact().all().size() == 0) {
       app.goTo().submitclick();
       app.contact().create(new ContactData()
@@ -31,7 +31,7 @@ public class ContactLookInfoTest extends TestBase {
   @Test
 
   public void testContactLookInfo() {
-    app.contact().lookContact();
+    app.contact().goHome();
     app.contact().lookInfoContact(0);
     ContactData contact = app.contact().all1().iterator().next();
     ContactData contactLookInfo = app.contact().infoEditForm(contact);

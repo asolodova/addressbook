@@ -4,7 +4,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import qa.tests.model.ContactData;
 
-import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -19,7 +18,7 @@ public class ContactInfoTest extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions(){
-    app.contact().lookContact();
+    app.contact().goHome();
     if (app.contact().all().size() == 0) {
       app.goTo().submitclick();
       app.contact().create(new ContactData()
@@ -33,7 +32,7 @@ public class ContactInfoTest extends TestBase {
   @Test
 
   public void testContactPhones() {
-    app.contact().lookContact();
+    app.contact().goHome();
     ContactData contact = app.contact().all().iterator().next();
     ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact) ;
 

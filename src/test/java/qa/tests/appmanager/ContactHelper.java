@@ -45,7 +45,7 @@ public class ContactHelper extends HelperBase {
     }
   }
 
-  public void lookContact() {
+  public void goHome() {
     click(By.linkText("home"));
   }
 
@@ -78,7 +78,7 @@ public class ContactHelper extends HelperBase {
     fildContactForm(contact, true);
     submitNewContact();
     contactCache = null;
-    lookContact();
+    goHome();
   }
 
   public void modify(ContactData contact) {
@@ -86,7 +86,7 @@ public class ContactHelper extends HelperBase {
     fildContactForm(contact, false);
     updateContact();
     contactCache = null;
-    lookContact();
+    goHome();
   }
 
   public void delete(ContactData contact) {
@@ -94,7 +94,7 @@ public class ContactHelper extends HelperBase {
     deleteContact();
     alertContact();
     contactCache = null;
-    lookContact();
+    goHome();
   }
 
   public boolean isThereAContact() {

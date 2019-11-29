@@ -1,12 +1,12 @@
 package qa.tests.tests;
 
-
 import org.hamcrest.MatcherAssert;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import qa.tests.model.GroupData;
 import qa.tests.model.Groups;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 
 /**
@@ -35,6 +35,4 @@ public class GroupModificationTests extends TestBase {
     Groups after = app.group().all();
     MatcherAssert.assertThat(after, equalTo(before.without(modifiedGroup).withAdded(group)));
   }
-
-
 }

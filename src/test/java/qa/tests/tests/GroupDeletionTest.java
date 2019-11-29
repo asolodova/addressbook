@@ -1,15 +1,10 @@
 package qa.tests.tests;
 
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.MatcherAssert;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import qa.tests.model.GroupData;
 import qa.tests.model.Groups;
 
-import java.util.List;
-import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -33,10 +28,5 @@ public class GroupDeletionTest extends TestBase {
         assertEquals(app.group().count(), before.size() -1);
         Groups after = app.group().all();
         assertThat(after, equalTo(before.without(deletedGroup)));
-
-
     }
-
-
-
 }
