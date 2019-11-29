@@ -26,12 +26,12 @@ public class GroupCreationTest extends TestBase {
   @Test
   public void testadGroupCreation() {
 
+    // Проверка на невозможность создания группы с именем содержащм апостроф
     app.goTo().groupPage();
     Groups before = app.group().all();
     GroupData group = new GroupData().withName("Test2'");
     app.group().create(group);
     assertThat(app.group().count(), equalTo(before.size()));
-
     Groups after = app.group().all();
     assertThat(after, equalTo(before));
   }

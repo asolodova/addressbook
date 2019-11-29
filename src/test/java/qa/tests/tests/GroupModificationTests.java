@@ -6,7 +6,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import qa.tests.model.GroupData;
 import qa.tests.model.Groups;
-
 import static org.hamcrest.CoreMatchers.equalTo;
 
 /**
