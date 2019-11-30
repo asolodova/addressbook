@@ -15,21 +15,12 @@ import java.util.stream.Collectors;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class GroupCreationTest extends TestBase {
+public class GroupCreationTestXml extends TestBase {
 
 
   @DataProvider
   public Iterator <Object[]> validGroups() throws IOException {
-// Использование данных из файла с форматом csv
-//    List<Object[]> list = new ArrayList<Object[]>();
-//    BufferedReader reader = new BufferedReader(new FileReader(new File("src/main/resources/groups.csv")));
-//    String line = reader.readLine();
-//    while (line != null){
-//      String[] split =  line.split(";");
-//      list.add(new Object[] {new GroupData().withName(split[0]).withHeader(split[1]).withFooter(split[2])});
-//      line = reader.readLine();
-//    }
-//    return list.iterator();
+//    Использование формата xml
     BufferedReader reader = new BufferedReader(new FileReader(new File("src/main/resources/groups.xml")));
     String xml = "";
     String line = reader.readLine();
