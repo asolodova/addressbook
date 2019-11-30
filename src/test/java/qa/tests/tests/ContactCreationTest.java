@@ -1,5 +1,7 @@
 package qa.tests.tests;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 import qa.tests.model.ContactData;
 import qa.tests.model.Contacts;
@@ -14,7 +16,6 @@ public class ContactCreationTest extends TestBase {
 
     @Test
     public void testContactCreation() {
-
         Contacts before = app.contact().all();
         File photo = new File("src/main/resources/123.png");
         ContactData contact = new ContactData()
@@ -38,5 +39,4 @@ public class ContactCreationTest extends TestBase {
         System.out.println(current.canRead());
         System.out.println(current.canWrite());
     }
-
 }
