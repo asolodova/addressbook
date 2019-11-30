@@ -24,15 +24,15 @@ public class GroupCreationTestCsv extends TestBase {
 // Использование данных из файла с форматом csv
 //
     List<Object[]> list = new ArrayList<Object[]>();
-    BufferedReader reader = new BufferedReader(new FileReader(new File("src/main/resources/groups.csv")));
+    try(BufferedReader reader = new BufferedReader(new FileReader(new File("src/main/resources/groups.csv")))){
     String line = reader.readLine();
     while (line != null){
       String[] split =  line.split(";");
       list.add(new Object[] {new GroupData().withName(split[0]).withHeader(split[1]).withFooter(split[2])});
       line = reader.readLine();
     }
-    return list.iterator();
-
+      return list.iterator();
+    }
   }
   @Test(dataProvider = "validGroupsCsv")
   public void testGroupCreationCsv(GroupData group) {
