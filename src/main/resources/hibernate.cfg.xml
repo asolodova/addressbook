@@ -36,7 +36,7 @@
 
     <!-- Names the annotated entity class -->
     <mapping class="qa.tests.model.GroupData"/>
-
-</session-factory>
+    <mapping class="qa.tests.model.ContactData"/>
+    </session-factory>
 
 </hibernate-configuration>
