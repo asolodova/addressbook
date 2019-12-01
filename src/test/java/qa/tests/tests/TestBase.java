@@ -14,6 +14,7 @@ import qa.tests.model.Groups;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.stream.Collectors;
+import java.net.URL;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -24,7 +25,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class TestBase {
 
   Logger logger = LoggerFactory.getLogger(TestBase.class);
-  protected static final ApplicationManager app = new ApplicationManager(BrowserType.FIREFOX);
+  protected static final ApplicationManager app = new ApplicationManager(System.getProperty("browser", BrowserType.CHROME));
 
   @BeforeSuite
   public void setUp() throws Exception {
