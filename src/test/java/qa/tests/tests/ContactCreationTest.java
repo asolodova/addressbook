@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 import qa.tests.model.ContactData;
 import qa.tests.model.Contacts;
+import qa.tests.model.GroupData;
 import qa.tests.model.Groups;
 
 import java.io.File;
@@ -16,11 +17,13 @@ public class ContactCreationTest extends TestBase {
 
     @Test
     public void testContactCreation() {
+        Groups groups = app.db().groups();
         Contacts before = app.contact().all();
+
         File photo = new File("src/main/resources/123.png");
         ContactData contact = new ContactData()
                 .withFirstname("Task_888").withLastname("878").withMiddlename("Task7").withNickname("test7")
-                .withAddress("Saint Petersburg").withCompany("wer").withGroup("Update1").withPhoto(photo);
+                .withAddress("Saint Petersburg").withCompany("wer").withPhoto(photo).inGroup(groups.iterator().next());
         app.contact().create(contact , true);
         assertThat(app.contact().count(), equalTo(before.size() + 1));
         Contacts after = app.contact().all();

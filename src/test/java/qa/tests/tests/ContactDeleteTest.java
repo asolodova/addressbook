@@ -4,6 +4,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import qa.tests.model.ContactData;
 import qa.tests.model.Contacts;
+import qa.tests.model.Groups;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -16,13 +17,14 @@ public class ContactDeleteTest extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions(){
+    Groups groups = app.db().groups();
     app.contact().goHome();
     if (app.contact().all().size() == 0) {
       app.goTo().submitclick();
       app.contact().create(new ContactData()
                       .withFirstname("Task_7").withLastname("Task_7").withMiddlename("Task7").withNickname("test7")
                       .withAddress("Saint Petersburg").withHomePhone("444141").withMobilePhone("+79548525646")
-                      .withWorkPhone("23332223").withCompany("wer").withGroup("Test2"),true);
+                      .withWorkPhone("23332223").withCompany("wer").inGroup(groups.iterator().next()),true);
     }
   }
 

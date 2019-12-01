@@ -18,12 +18,13 @@ public class ContactModificationTest extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions(){
+    Groups groups = app.db().groups();
     app.contact().goHome();
     if (app.contact().all().size() == 0) {
       app.goTo().submitclick();
       app.contact().create(new ContactData()
               .withFirstname("Task_7").withLastname("Task_7").withMiddlename("Task7").withNickname("test7")
-              .withAddress("Saint Petersburg").withCompany("wer").withGroup("test2"), true);
+              .withAddress("Saint Petersburg").withCompany("wer").inGroup(groups.iterator().next()), true);
     }
   }
 

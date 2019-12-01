@@ -3,6 +3,7 @@ package qa.tests.tests;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import qa.tests.model.ContactData;
+import qa.tests.model.Groups;
 
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -18,6 +19,7 @@ public class ContactInfoTest extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions(){
+    Groups groups = app.db().groups();
     app.contact().goHome();
     if (app.contact().all().size() == 0) {
       app.goTo().submitclick();
@@ -25,7 +27,7 @@ public class ContactInfoTest extends TestBase {
               .withFirstname("Work").withLastname("Practika").withMiddlename("Task7").withNickname("test7")
               .withAddress("Saint Petersburg").withEmail("gfbgknfjnb").withEmail2("https://dfkdlfj")
               .withEmail3("www@gmai.ovo").withHomePhone("0110101").withMobilePhone("+79548525646")
-              .withWorkPhone("5663565").withCompany("wer").withGroup("Test2"), true);
+              .withWorkPhone("5663565").withCompany("wer").inGroup(groups.iterator().next()), true);
     }
   }
 
