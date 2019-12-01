@@ -7,14 +7,13 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
 
 import java.util.Objects;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Lina on 26.03.2017.
  */
 public class ApplicationManager {
-
-
   WebDriver wd;
 
   private ContactHelper contactHelper;
@@ -22,6 +21,7 @@ public class ApplicationManager {
   private NavigationHelper navigationHelper;
   private GroupHelper groupHelper;
   private String browser;
+  private DbHelper dbHelper;
 
   public ApplicationManager(String browser) {
 
@@ -29,6 +29,9 @@ public class ApplicationManager {
   }
 
   public void init() {
+
+    dbHelper = new DbHelper();
+
     if (Objects.equals(browser, BrowserType.FIREFOX)){
       wd = new FirefoxDriver();
     }else if(Objects.equals(browser, BrowserType.CHROME)){
@@ -61,5 +64,9 @@ public class ApplicationManager {
   public ContactHelper contact() {
     return contactHelper;
   }
+
+  public DbHelper db() {
+    return  dbHelper;
+  };
 
 }
