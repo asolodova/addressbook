@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
  * Created by Lina on 26.03.2017.
  */
 public class ApplicationManager {
-  private final Properties properties;
+
   WebDriver wd;
 
   private ContactHelper contactHelper;
@@ -27,12 +27,12 @@ public class ApplicationManager {
   private GroupHelper groupHelper;
   private String browser;
   private DbHelper dbHelper;
+  private final Properties properties;
 
   public ApplicationManager(String browser) {
 
     this.browser = browser;
     properties = new Properties();
-
   }
 
   public void init() throws IOException {
