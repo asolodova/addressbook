@@ -25,6 +25,9 @@
                     <suiteXmlFiles>
                         <suiteXmlFile>src/main/resources/testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
+                    <systemPropertyVariables>
+                        <application.properties>/local.properties</application.properties>
+                    </systemPropertyVariables>
                 </configuration>
             </plugin>
 
