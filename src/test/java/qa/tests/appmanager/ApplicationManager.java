@@ -37,10 +37,10 @@ public class ApplicationManager {
 
   public void init() throws IOException {
 
-    dbHelper = new DbHelper();
-
     String target = System.getProperty("target", "application");
     properties.load(new FileReader(new File(String.format("src/main/resources/%s.properties", target))));
+
+    dbHelper = new DbHelper();
 
     if (Objects.equals(browser, BrowserType.FIREFOX)){
       wd = new FirefoxDriver();
